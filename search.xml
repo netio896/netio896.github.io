@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>搭建属于自己的发卡小店-独角数卡</title>
+      <link href="/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/"/>
+      <url>/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="搭建属于自己的发卡小店-独角数卡"><a href="#搭建属于自己的发卡小店-独角数卡" class="headerlink" title="搭建属于自己的发卡小店-独角数卡"></a>搭建属于自己的发卡小店-独角数卡</h1><p>一、首先给出大佬的 Git官方仓库</p><p><a href="https://github.com/assimon/dujiaoka">https://github.com/assimon/dujiaoka</a><br>我选用的是docker版本的部署,至于为什么选择这个,当然是因为方便!<br>二、直接运行docker版本的独角卡命令<br>1.部署脚本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -dit --name dujiaoka -p 80:80 -p 9002:9000 -e WEB_DOCUMENT_ROOT=/app/public jiangjuhong/dujiaoka</span><br></pre></td></tr></table></figure><p>2.安装的时候需要MySQL和Redis,所以就直接安装他们</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 3306:3306  -e MYSQL_ROOT_PASSWORD=123456 --name mysql -v /data/mysql/config/my.cnf:/etc/mysql/my.cnf -v /data/mysql/db:/var/lib/mysql mysql:5.7</span><br><span class="line">docker run -d --name myredis -p 6379:6379 redis --requirepass <span class="string">&quot;12345&quot;</span></span><br></pre></td></tr></table></figure><p>没有报错的情况,就已经准备工作好了<br>3.直接访问部署服务的IP,就可以填写对应的MySQL和Redis的信息进行安装,如果数据库没有创建库,你可以通过数据库连接工具创建一个库<br>5.可以使用CF域名管理映射到对应vps的IP上面就可以通过域名进行访问<br>6.里面的邮箱配置可以参考如下图:<br>pic_40719099.png</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Hello World</title>
       <link href="/2025/01/07/hello-world/"/>
       <url>/2025/01/07/hello-world/</url>
