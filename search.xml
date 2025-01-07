@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title></title>
+      <link href="/2025/01/07/Docker%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9E%E8%AE%A2%E9%98%85%E9%93%BE%E6%8E%A5%E8%BD%AC%E6%8D%A2%E6%9C%8D%E5%8A%A1/"/>
+      <url>/2025/01/07/Docker%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E4%B8%93%E5%B1%9E%E8%AE%A2%E9%98%85%E9%93%BE%E6%8E%A5%E8%BD%AC%E6%8D%A2%E6%9C%8D%E5%8A%A1/</url>
+      
+        <content type="html"><![CDATA[<hr><p>title: Docker搭建自己的专属订阅链接转换服务<br>date: 2025-01-07 10:00:00<br>updated: 2025-01-07 10:00:00<br>tags: </p><ul><li>Docker<ul><li>订阅链接<ul><li><p>教程<br>categories: </p><ul><li>技术<br>keywords: Docker, 订阅链接, 教程<br>description: 本文介绍如何使用 Docker 搭建专属订阅链接转换服务，包括环境部署、配置文件创建、服务启动和更新等。<br>cover: <a href="https://img.090227.xyz/file/ae62475a131f3734a201c.png">https://img.090227.xyz/file/ae62475a131f3734a201c.png</a><br>toc: true<br>copyright: true<br>copyright_author: CareyWang<br>copyright_author_href: <a href="https://github.com/CareyWang/sub-web">https://github.com/CareyWang/sub-web</a><br>background: “#ffffff”</li></ul><hr><h1 id="Docker搭建自己的专属订阅链接转换服务"><a href="#Docker搭建自己的专属订阅链接转换服务" class="headerlink" title="Docker搭建自己的专属订阅链接转换服务"></a>Docker搭建自己的专属订阅链接转换服务</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天用 Docker 来搭建属于自己的订阅链接转换服务。</p><p>本项目的 GitHub 地址：<a href="https://github.com/CareyWang/sub-web">CareyWang&#x2F;sub-web</a></p><p>Demo: <a href="https://sub.ywsj.eu.org/">https://sub.ywsj.eu.org</a></p><hr><h2 id="一、Docker-环境部署"><a href="#一、Docker-环境部署" class="headerlink" title="一、Docker 环境部署"></a>一、Docker 环境部署</h2><p>在 VPS 上安装 Docker 和 Docker Compose。</p><p>参考文档：</p><ul><li><a href="https://duan.yyzq.eu.org/docker-001">Docker 官方安装文档（英文）</a></li><li><a href="https://duan.yyzq.eu.org/docker-002">Docker Compose 官方安装文档（英文）</a></li><li><a href="https://duan.yyzq.eu.org/03">CentOS 安装 Docker 和 Docker Compose（中文）</a></li><li><a href="https://duan.yyzq.eu.org/04">Ubuntu 安装 Docker 和 Docker Compose（中文）</a></li></ul><hr><h2 id="二、创建-docker-compose-yml-文件"><a href="#二、创建-docker-compose-yml-文件" class="headerlink" title="二、创建 docker-compose.yml 文件"></a>二、创建 <code>docker-compose.yml</code> 文件</h2><ol><li>创建一个目录并进入此目录：<pre><code class="language-bash">   mkdir ~/sub-web &amp;&amp; cd ~/sub-weby</code></pre></li></ol></li></ul></li></ul></li></ul>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>搭建属于自己的发卡小店-独角数卡</title>
       <link href="/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/"/>
       <url>/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/</url>
