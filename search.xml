@@ -17,6 +17,37 @@
     
     
     <entry>
+      <title>【PVE LXC OpenWrt】最新 PVE8 LXC 安装 OpenWrt + OpenClash + Tun 旁路由</title>
+      <link href="/2025/01/07/OpenWRT-PVE-LXC-CT%E5%AE%B9%E5%99%A8%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/"/>
+      <url>/2025/01/07/OpenWRT-PVE-LXC-CT%E5%AE%B9%E5%99%A8%E4%B8%8B%E7%9A%84%E5%AE%89%E8%A3%85/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>OpenWrt 和 OpenClash 有许多魔改发行版本，既然选择 PVE 来构建 HomeLab 系统，我相信你有较强的折腾能力，<strong>建议所有镜像或包选择官方版本</strong>，因为：</p><ol><li>魔改发行版兼容性较差，很多版本安装后会出现问题，且不了解插件机制时很难解决。</li><li>官方版本虽可能也有问题，但通过 Issue 或 Google 更容易找到答案。</li></ol><p>本文除了手把手安装，还解决以下问题：</p><ol><li>LXC 容器中 OpenWrt 无法联网。</li><li>Tun 模式的启用问题。</li></ol><hr><h2 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h2><ul><li><strong>CPU</strong>: i7 9700k (x86_64)</li><li><strong>PVE</strong>: 8.2.2</li><li><strong>OpenWrt</strong>: 23.05.4 X86_64</li><li><strong>OpenClash</strong>: 0.46.050-beta_all</li></ul><hr><h2 id="网络架构图"><a href="#网络架构图" class="headerlink" title="网络架构图"></a>网络架构图</h2><blockquote><p>此处可插入网络架构图。</p></blockquote><hr><h2 id="1-安装-OpenWrt"><a href="#1-安装-OpenWrt" class="headerlink" title="1. 安装 OpenWrt"></a>1. 安装 OpenWrt</h2><h3 id="1-1-获取-OpenWrt-官方镜像"><a href="#1-1-获取-OpenWrt-官方镜像" class="headerlink" title="1.1 获取 OpenWrt 官方镜像"></a>1.1 获取 OpenWrt 官方镜像</h3><ol><li><p>前往官方发布路径，选择合适的处理器架构（如 <code>x86/64</code>），下载 <code>rootfs.tar.gz</code> 镜像压缩包：<br><a href="https://archive.openwrt.org/releases/23.05.4/targets/">OpenWrt 官方发布路径</a></p></li><li><p>使用以下命令将镜像包下载到 PVE 本地目录：</p><pre><code class="language-bash">cd /var/lib/vz/template/cachewget https://archive.openwrt.org/releases/23.05.4/targets/x86/64/openwrt-23.05.4-x86-64-rootfs.tar.gz</code></pre></li></ol><hr><p>1.2 创建 OpenWrt LXC 容器</p><p>在 PVE 节点上创建 LXC 容器，使用以下命令：</p><p>pct create 102 local:vztmpl&#x2F;openwrt-23.05.4-x86-64-rootfs.tar.gz –rootfs local-lvm:1 –ostype unmanaged –hostname OpenWrt –arch amd64 –cores 8 –memory 1024 –swap 0 –net0 bridge&#x3D;vmbr0,name&#x3D;eth0</p><hr><p>1.3 配置容器 Tun 模式</p><p>编辑容器配置文件，追加以下内容：</p><p>lxc.apparmor.profile: unconfined<br>lxc.cgroup.devices.allow: a<br>lxc.cap.drop:<br>lxc.cgroup2.devices.allow: c 10:200 rwm<br>lxc.mount.entry: &#x2F;dev&#x2F;net&#x2F;tun dev&#x2F;net&#x2F;tun none bind,create&#x3D;file</p><hr><p>1.4 启动容器</p><ol><li><p>在 PVE 界面中，左侧数据中心 -&gt; PVE -&gt; 选择容器。</p></li><li><p>点击 控制台 -&gt; 启动，按回车即可进入容器终端。</p></li></ol><hr><p>1.5 配置 IP 和 DNS</p><p>修改容器网络配置文件 &#x2F;etc&#x2F;config&#x2F;network：</p><p>config interface &#39;lan&#39;<br>        option device &#39;br-lan&#39;<br>        option proto &#39;static&#39;<br>        option ipaddr &#39;192.168.50.102&#39;<br>        option netmask &#39;255.255.255.0&#39;<br>        option gateway &#39;192.168.50.1&#39;<br>        list dns &#39;192.168.50.1&#39;</p><hr><p>1.6 设置访问密码</p><p>使用以下命令设置登录密码：</p><p>passwd</p><hr><p>1.7 检查网络连通性</p><p>访问 <a href="http://192.168.50.102/">http://192.168.50.102</a> 进入 OpenWrt Web 界面，测试网络连通性。</p><hr><ol start="2"><li>安装 OpenClash</li></ol><p>2.1 安装前置依赖</p><p>在容器控制台执行以下命令：</p><p>opkg update<br>opkg install coreutils-nohup bash dnsmasq-full curl ca-certificates ip-full libcap libcap-bin ruby ruby-yaml kmod-tun kmod-inet-diag unzip kmod-nft-tproxy luci-compat luci luci-base luci-i18n-base-zh-cn</p><p>如遇到 dnsmasq 冲突问题，使用以下命令卸载原包并重新安装：</p><p>opkg remove dnsmasq<br>opkg install dnsmasq-full</p><hr><p>2.2 下载 OpenClash 安装包</p><p>前往 OpenClash 官方发布地址，下载最新的 luci-app-openclash 安装包，并按照官方指南完成安装。</p><hr><p>至此，您已经完成了在 PVE LXC 环境下安装 OpenWrt 和 OpenClash 的全部步骤。如有问题，欢迎交流！ ‘ &gt; source&#x2F;_posts&#x2F;pve-lxc-openwrt-openclash-tun.md</p><h3 id="解释："><a href="#解释：" class="headerlink" title="解释："></a>解释：</h3><ol><li><strong><code>echo</code></strong>：将内容以字符串形式输出。</li><li><strong>重定向 (<code>&gt;</code>)</strong>：将内容写入到 <code>Hexo</code> 的 <code>_posts</code> 文件夹中，文件名为 <code>pve-lxc-openwrt-openclash-tun.md</code>。</li><li><strong>路径</strong>：<code>source/_posts/</code> 是 Hexo 默认的文章存放路径。</li></ol><h3 id="生成文章后："><a href="#生成文章后：" class="headerlink" title="生成文章后："></a>生成文章后：</h3><p>运行以下命令查看效果：</p><pre><code class="language-bash">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo server然后访问 http://localhost:4000 查看生成的文章。</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> PVE </tag>
+            
+            <tag> OpenWrt </tag>
+            
+            <tag> OpenClash </tag>
+            
+            <tag> 教程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>搭建属于自己的发卡小店-独角数卡</title>
       <link href="/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/"/>
       <url>/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/</url>
