@@ -48,6 +48,64 @@
     
     
     <entry>
+      <title>Linux 系统加载 WiFi 驱动的步骤</title>
+      <link href="/2025/01/07/istoreos%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/"/>
+      <url>/2025/01/07/istoreos%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E9%A9%B1%E5%8A%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="在-Linux-系统中加载-WiFi-驱动的步骤"><a href="#在-Linux-系统中加载-WiFi-驱动的步骤" class="headerlink" title="在 Linux 系统中加载 WiFi 驱动的步骤"></a>在 Linux 系统中加载 WiFi 驱动的步骤</h2><p>以下是加载和安装 WiFi 驱动的完整流程：</p><hr><h3 id="1-使用命令查询需要的-WiFi-驱动"><a href="#1-使用命令查询需要的-WiFi-驱动" class="headerlink" title="1. 使用命令查询需要的 WiFi 驱动"></a>1. 使用命令查询需要的 WiFi 驱动</h3><p>通过 <code>dmesg</code> 日志查看系统当前的 WiFi 驱动需求：</p><pre><code class="language-bash">dmesg | grep -i wifi</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> Linux </tag>
+            
+            <tag> WiFi 驱动 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>使用 Docker 搭建图床 Lsky Pro</title>
+      <link href="/2025/01/07/LskyPro%E5%9B%BE%E5%BA%8A/"/>
+      <url>/2025/01/07/LskyPro%E5%9B%BE%E5%BA%8A/</url>
+      
+        <content type="html"><![CDATA[<h2 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h2><h3 id="1-1-什么是-Lsky-Pro？"><a href="#1-1-什么是-Lsky-Pro？" class="headerlink" title="1.1 什么是 Lsky Pro？"></a>1.1 什么是 Lsky Pro？</h3><p>Lsky Pro（中文名：兰空图床）是一款功能强大的在线图片上传和管理工具，可作为云上相册或写作贴图库。</p><ul><li><strong>开发历程</strong>：始于 2017 年，由 ThinkPHP 5 开发；2022 年发布重写的 2.0 版本。</li><li><strong>特点</strong>：<ul><li>支持多种云存储：AWS S3、阿里云 OSS、腾讯云 COS 等。</li><li>支持多数据库：MySQL、PostgreSQL、SQLite、SQL Server。</li><li>强大的图片管理功能：支持水印、重命名、拖拽上传等。</li><li>角色组配置：支持不同角色的存储策略和上传频率限制。</li><li>支持通过接口上传图片和管理相册。</li></ul></li></ul><hr><h2 id="2-项目地址与资源"><a href="#2-项目地址与资源" class="headerlink" title="2. 项目地址与资源"></a>2. 项目地址与资源</h2><ul><li><strong>GitHub 原项目地址</strong>：<a href="https://github.com/lsky-org/lsky-pro">Lsky Pro</a></li><li><strong>官网地址</strong>：<a href="https://www.lsky.pro/">https://www.lsky.pro/</a></li><li><strong>文档地址</strong>：<a href="https://docs.lsky.pro/">https://docs.lsky.pro/</a></li><li><strong>Docker 镜像地址</strong>：<a href="https://hub.docker.com/r/dko0/lsky-pro">dko0&#x2F;lsky-pro</a></li><li><strong>PicGo 插件</strong>：<a href="https://hellodk.cn/post/964">lankong</a></li></ul><hr><h2 id="3-搭建环境"><a href="#3-搭建环境" class="headerlink" title="3. 搭建环境"></a>3. 搭建环境</h2><h3 id="3-1-必备条件"><a href="#3-1-必备条件" class="headerlink" title="3.1 必备条件"></a>3.1 必备条件</h3><ol><li><strong>服务器</strong>：推荐使用非大陆服务器，如腾讯香港轻量应用服务器、Vultr、Hetzner 等。</li><li><strong>系统</strong>：Debian 10（其他版本也可）。</li><li><strong>域名</strong>：并已解析到服务器。</li><li><strong>安装 Docker 和 Docker Compose</strong>：<ul><li>Docker 安装脚本：<a href="https://docs.docker.com/engine/install/">点击查看</a></li><li>Docker Compose 安装脚本：<a href="https://docs.docker.com/compose/install/">点击查看</a></li></ul></li></ol><h3 id="3-2-可选工具"><a href="#3-2-可选工具" class="headerlink" title="3.2 可选工具"></a>3.2 可选工具</h3><ul><li><strong>宝塔面板</strong>（海外版）或 <strong>Nginx Proxy Manager</strong>，用于配置反向代理和端口转发。</li></ul><hr><h2 id="4-使用-Docker-搭建-Lsky-Pro"><a href="#4-使用-Docker-搭建-Lsky-Pro" class="headerlink" title="4. 使用 Docker 搭建 Lsky Pro"></a>4. 使用 Docker 搭建 Lsky Pro</h2><h3 id="4-1-环境初始化"><a href="#4-1-环境初始化" class="headerlink" title="4.1 环境初始化"></a>4.1 环境初始化</h3><ol><li><strong>设置 SWAP（可选）</strong>：<pre><code class="language-bash">wget -O box.sh https://raw.githubusercontent.com/BlueSkyXN/SKY-BOX/main/box.sh &amp;&amp; chmod +x box.sh &amp;&amp; ./box.sh</code></pre></li></ol><p>选择 18，输入 SWAP 的大小。</p><ol start="2"><li>安装常用软件：</li></ol><p>sudo -i          # 切换到 root 用户<br>apt update -y    # 更新系统<br>apt install wget curl sudo vim git -y</p><hr><p>4.2 创建工作目录</p><p>mkdir -p &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro<br>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro<br>nano docker-compose.yml</p><p>在 docker-compose.yml 中填入以下内容：</p><p>version: ‘3’<br>services:<br>    lsky-pro:<br>        container_name: lsky-pro<br>        image: dko0&#x2F;lsky-pro<br>        restart: always<br>        volumes:<br>            - &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro&#x2F;lsky-pro-data:&#x2F;var&#x2F;www&#x2F;html<br>        ports:<br>            - 7791:80<br>        environment:<br>            - MYSQL_HOST&#x3D;mysql<br>            - MYSQL_DATABASE&#x3D;lsky-pro<br>            - MYSQL_USER&#x3D;lsky-pro<br>            - MYSQL_PASSWORD&#x3D;lsky-pro</p><pre><code>mysql:    image: mysql:8.0    container_name: lsky-pro-db    restart: always    environment:        - MYSQL_DATABASE=lsky-pro        - MYSQL_USER=lsky-pro        - MYSQL_PASSWORD=lsky-pro        - MYSQL_ROOT_PASSWORD=lsky-pro    volumes:        - /root/data/docker_data/lsky-pro/db:/var/lib/mysql</code></pre><p>保存并退出（Ctrl+X -&gt; Y -&gt; Enter）。</p><hr><p>4.3 检查端口并启动容器</p><ol><li>检查端口是否被占用：</li></ol><p>lsof -i:7791</p><p>如果出现 -bash: lsof: command not found，执行以下命令安装：</p><p>apt install lsof -y</p><ol start="2"><li>启动容器：</li></ol><p>docker-compose up -d</p><ol start="3"><li>访问图床：</li></ol><p>http:&#x2F;&#x2F;&lt;服务器IP&gt;:7791</p><p>如需查看服务器 IP，可运行以下命令：</p><p>curl ip.sb</p><hr><ol start="5"><li>更新与卸载</li></ol><p>5.1 更新</p><ol><li>备份数据：</li></ol><p>cp -r &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro&#x2F;lsky-pro-data &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro&#x2F;lsky-pro-data.archive<br>cp -r &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro&#x2F;db &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro&#x2F;db.archive</p><ol start="2"><li>更新镜像：</li></ol><p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro<br>docker-compose pull<br>docker-compose up -d</p><hr><p>5.2 卸载</p><ol><li>停止容器：</li></ol><p>cd &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro<br>docker-compose down</p><ol start="2"><li>删除数据：</li></ol><p>rm -rf &#x2F;root&#x2F;data&#x2F;docker_data&#x2F;lsky-pro</p><hr><ol start="6"><li>配置反向代理</li></ol><p>如果使用 Nginx Proxy Manager 或 宝塔面板，可以配置反向代理将 7791 端口隐藏到域名下，具体步骤如下：</p><ol><li><p>添加域名解析到服务器 IP。</p></li><li><p>在面板中创建反向代理，指向 <a href="http://127.0.0.1:7791。">http://127.0.0.1:7791。</a></p></li><li><p>配置 HTTPS 证书，保护数据安全。</p></li></ol><hr><p>至此，Lsky Pro 图床的安装和配置已经完成！如果遇到问题，欢迎在评论区交流！</p><p>这个版本的文档简洁明了，包含完整的步骤和详细说明，适合分享给需要搭建图床的用户。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Docker </tag>
+            
+            <tag> Lsky Pro </tag>
+            
+            <tag> 图床 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>搭建属于自己的发卡小店-独角数卡</title>
       <link href="/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/"/>
       <url>/2025/01/07/%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84%E5%8F%91%E5%8D%A1%E5%B0%8F%E5%BA%97-%E7%8B%AC%E8%A7%92%E6%95%B0%E5%8D%A1/</url>
