@@ -1,40 +1,40 @@
 menu:
-  # 文章:
-  #   隧道: /archives/ || anzhiyu-icon-box-archive
-  #   分类: /categories/ || anzhiyu-icon-shapes
-  #   标签: /tags/ || anzhiyu-icon-tags
+   文章:
+     隧道: /archives/ || anzhiyu-icon-box-archive
+     分类: /categories/ || anzhiyu-icon-shapes
+     标签: /tags/ || anzhiyu-icon-tags
 
   # 友链:
   #   友人帐: /link/ || anzhiyu-icon-link
   #   朋友圈: /fcircle/ || anzhiyu-icon-artstation
   #   留言板: /comments/ || anzhiyu-icon-envelope
 
-  # 我的:
-  #   音乐馆: /music/ || anzhiyu-icon-music
-  #   追番页: /bangumis/ || anzhiyu-icon-bilibili
-  #   相册集: /album/ || anzhiyu-icon-images
+   我的:
+     音乐馆: /music/ || anzhiyu-icon-music
+     追番页: /bangumis/ || anzhiyu-icon-bilibili
+     相册集: /album/ || anzhiyu-icon-images
   #   小空调: /air-conditioner/ || anzhiyu-icon-fan
 
-  # 关于:
-  #   关于本人: /about/ || anzhiyu-icon-paper-plane
+   关于:
+     关于本人: /about/ || anzhiyu-icon-paper-plane
   #   闲言碎语: /essay/ || anzhiyu-icon-lightbulb
   #   随便逛逛: javascript:toRandomPost() || anzhiyu-icon-shoe-prints1
 
 # nav相关配置
 nav:
   enable: true
-  travelling: false
+  travelling: true
   clock: false
   menu:
     - title: 网页
       item:
         - name: 博客
-          link: https://blog.anheyu.com/
+          link: /
           icon: /img/favicon.ico
     - title: 项目
       item:
-        - name: 安知鱼图床
-          link: https://image.anheyu.com/
+        - name: 设备
+          link: /equipment/
           icon: https://image.anheyu.com/favicon.ico
 
 # mourn （哀悼日，指定日期网站简单变灰，不包括滚动条）
@@ -71,16 +71,16 @@ social:
 
 # 作者卡片 状态
 author_status:
-  enable: false
+  enable: true
   # 可以是任何图片，建议放表情包或者emoji图片，效果都很好，[表情包速查](https://emotion.xiaokang.me/)
   statusImg: "https://bu.dusays.com/2023/08/24/64e6ce9c507bb.png"
   skills:
-    # - 🤖️ 数码科技爱好者
-    # - 🔍 分享与热心帮助
-    # - 🏠 智能家居小能手
-    # - 🔨 设计开发一条龙
-    # - 🤝 专修交互与设计
-    # - 🏃 脚踏实地行动派
+     - 🤖️ 数码科技爱好者
+     - 🔍 分享与热心帮助
+     - 🏠 智能家居小能手
+     - 🔨 设计开发一条龙
+     - 🤝 专修交互与设计
+     - 🏃 脚踏实地行动派
     # - 🧱 团队小组发动机
     # - 💢 壮汉人狠话不多
 
@@ -795,7 +795,6 @@ preloader:
 
 # aside (侧边栏)
 # --------------------------------------
-
 aside:
   enable: true
   hide: false
@@ -806,48 +805,55 @@ aside:
     archive: true
     tag: true
     category: true
+
   card_author:
     enable: true
-    description: # <div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">产品、设计、开发</b>相关的问题和看法，还有<b style="color:#fff">文章翻译</b>和<b style="color:#fff">分享</b>。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div> # 默认为站点描述
+    description:
     name_link: /
 
   card_announcement:
     enable: false
     content: 欢迎来看我的博客鸭~
+
   card_weixin:
     enable: true
     face: https://bu.dusays.com/2023/01/13/63c02edf44033.png
     backFace: https://bu.dusays.com/2023/05/13/645fa415e8694.png
+
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
     sort: date # date or updated
-    sort_order: # Don't modify the setting unless you know how it works
+    sort_order:
+
   card_categories:
     enable: false
     limit: 8 # if set 0 will show all
     expand: none # none/true/false
-    sort_order: # Don't modify the setting unless you know how it works
+    sort_order:
+
   card_tags:
     enable: true
     limit: 40 # if set 0 will show all
     color: false
-    sort_order: # Don't modify the setting unless you know how it works
+    sort_order:
     highlightTags:
       # - Hexo
       # - 前端
+
   card_archives:
     enable: true
     type: monthly # yearly or monthly
     format: MMMM YYYY # eg: YYYY年MM月
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending
     limit: 8 # if set 0 will show all
-    sort_order: # Don't modify the setting unless you know how it works
+    sort_order:
+
   card_webinfo:
     enable: true
     post_count: true
     last_push_date: false
-    sort_order: # Don't modify the setting unless you know how it works
+    sort_order:
 
 # busuanzi count for PV / UV in site
 # 访问人数
@@ -932,9 +938,9 @@ darkmode:
 # Choose: readmode,translate,darkmode,hideAside,toc,chat,comment
 # Don't repeat 不要重複
 rightside_item_order:
-  enable: false
-  hide: # readmode,translate,darkmode,hideAside
-  show: # toc,chat,comment
+  enable: true
+  hide:  readmode,translate,darkmode,hideAside
+  show:  toc,chat,comment
 
 # Lightbox (图片大图查看模式)
 # --------------------------------------
@@ -1330,3 +1336,10 @@ CDN:
     # waterfall:
     # ali_iconfont_css:
     # accesskey_js:
+
+# ✅ 修复后的标签卡片配置
+card_tags:
+  enable: true
+  limit: 40 # if set 0 will show all
+  expand: true
+
