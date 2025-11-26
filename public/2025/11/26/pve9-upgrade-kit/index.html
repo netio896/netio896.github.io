@@ -4,14 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>PVE9 升级工具包（备份 + 升级 + 恢复一条龙） | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="这篇是给我自己和未来的我用的「PVE9 升级工具包」备忘录：  一键安装工具包   升级前检查（ready-check）   全量备份（配置 + VM&#x2F;CT + 系统盘）   同步到 NAS &#x2F; 从 NAS 恢复   真正执行 PVE 8 → 9 升级   升级后健康检查  整套思路：先硬件报告 → 环境检查 → 备份 → 升级 → 验证 → 出事就从 NAS 拉回。  🔥">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PVE9 升级工具包（备份 + 升级 + 恢复一条龙）">
+<meta property="og:url" content="http://example.com/2025/11/26/pve9-upgrade-kit/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="这篇是给我自己和未来的我用的「PVE9 升级工具包」备忘录：  一键安装工具包   升级前检查（ready-check）   全量备份（配置 + VM&#x2F;CT + 系统盘）   同步到 NAS &#x2F; 从 NAS 恢复   真正执行 PVE 8 → 9 升级   升级后健康检查  整套思路：先硬件报告 → 环境检查 → 备份 → 升级 → 验证 → 出事就从 NAS 拉回。  🔥">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-11-25T17:30:00.000Z">
+<meta property="article:modified_time" content="2025-11-26T05:54:32.203Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="PVE">
+<meta property="article:tag" content="升级">
+<meta property="article:tag" content="备份">
+<meta property="article:tag" content="自动化">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -69,98 +77,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-pve9-upgrade-kit-1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/11/26/pve9-upgrade-kit-1/" class="article-date">
-  <time class="dt-published" datetime="2025-11-26T05:53:59.000Z" itemprop="datePublished">2025-11-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/11/26/pve9-upgrade-kit-1/">pve9-upgrade-kit</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/11/26/pve9-upgrade-kit-1/" data-id="cuidBkeRGxUWbICYziq19mYSN" data-title="pve9-upgrade-kit" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/11/26/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2025-11-26T05:41:06.011Z" itemprop="datePublished">2025-11-26</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/11/26/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/11/26/hello-world/" data-id="cuidXBUj8QFGtGS-7pmXsjyxQ" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-pve9-upgrade-kit" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-pve9-upgrade-kit" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/11/26/pve9-upgrade-kit/" class="article-date">
   <time class="dt-published" datetime="2025-11-25T17:30:00.000Z" itemprop="datePublished">2025-11-26</time>
@@ -177,8 +94,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/11/26/pve9-upgrade-kit/">PVE9 升级工具包（备份 + 升级 + 恢复一条龙）</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      PVE9 升级工具包（备份 + 升级 + 恢复一条龙）
     </h1>
   
 
@@ -298,11 +215,23 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
+  
+    <a href="/2025/11/26/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Hello World
+        
+      </div>
+    </a>
+  
+  
+</nav>
 
   
+</article>
 
 
 </section>
