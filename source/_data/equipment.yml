@@ -1,0 +1,13 @@
+- class_name: 生产力设备
+  description: 提升效率的硬件
+  equipment_list:
+    - name: MacBook Pro
+      specification: M1 Pro / 32GB / 1TB
+      description: 性能猛、屏幕好
+      image: https://p.zhheo.com/YnW8cc2150681686120255749.png
+      link: https://apple.com
+    - name: iPhone 13 Pro
+      specification: 256GB
+      description: 120Hz 真香
+      image: https://p.zhheo.com/TofzQM2219061686120261484.png
+      link: https://apple.com
