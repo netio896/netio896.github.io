@@ -1,0 +1,7 @@
+{
+  "name": "hexo-site",
+  "compatibility_date": "2024-11-26",
+  "assets": {
+    "directory": "./public"
+  }
+}
